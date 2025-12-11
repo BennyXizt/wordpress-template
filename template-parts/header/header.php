@@ -7,6 +7,10 @@
         $logo_svg = file_get_contents($logo_file);
         $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
     }
+
+    $locations = get_nav_menu_locations();
+    $desktopMenuID = $locations['header_menu'];
+    $desktopMenu = wp_get_nav_menu_items($desktopMenuID);
 ?>
 
 <header class="header">
@@ -30,5 +34,18 @@
                 <?= bloginfo('name'); ?>
             </a>
         <?php endif; ?>
+        <div class="header__menu menu">
+            <nav class="menu__body">
+                <ul>
+                    <?php foreach($desktopMenu as $menuItem) : ?>
+                       <li>
+                         <a href="<?=$menuItem->url?>">
+                            <?=$menuItem->title?>
+                         </a>
+                       </li>
+                    <?php endforeach; ?>
+                </ul>
+            </nav>
+        </div>
     </div>
 </header>
