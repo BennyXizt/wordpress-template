@@ -8,6 +8,16 @@ class Custom_Customize {
         }
         $this->theme_id = $theme_id;
         add_action('customize_register', [$this, 'init']);
+
+        $this->allow_custom_logo();
+    }
+    private function allow_custom_logo() {
+        add_theme_support('custom-logo', array(
+            'width' => 300,
+            'height' => 100,
+            'flex-width' => true,
+            'flex-height' => true
+        ));
     }
     public function init($wp_customize) {
         $this->site_identity_keywords_register($wp_customize);
