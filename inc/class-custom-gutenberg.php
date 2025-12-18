@@ -34,7 +34,7 @@ class Custom_Gutenberg {
 
     public function init() {
         if( function_exists('acf_register_block_type') ) {
-            // $this->add_new_section('name');
+            $this->add_new_block('headerText');
         }
     }
 
@@ -67,7 +67,7 @@ class Custom_Gutenberg {
         }
     }
 
-    public function add_new_section($name) {
+    public function add_new_block($name) {
         acf_register_block_type(array(
             'name' => $name,
             'title' => ucfirst($name),
@@ -83,6 +83,14 @@ class Custom_Gutenberg {
             'supports'        => [
                 'align' => true,
                 'jsx'   => true,
+                'color' => [
+                    'text' => true,
+                    'background' => true
+                ],
+                'typography' => [
+                    'fontSize' => true,
+                    'lineHeight' => true
+                ]
             ],
         ));
     }

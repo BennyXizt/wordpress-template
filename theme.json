@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "settings": {
+    "layout": {
+      "contentSize": "900px",
+      "wideSize": "1200px"
+    },
+    "spacing": {
+      "blockGap": "1.5rem"
+    },
+    "typography": {
+      "customFontSize": false,
+      "fontSizes": [
+        { "slug": "xsmall", "size": "12px", "name": "XS" }
+      ]
+    },
+    "color": {
+      "custom": false,
+      "defaultPalette": false,
+      "palette": [
+        { "slug": "base", "color": "#dac5a7", "name": "Base" }
+      ]
+    }
+  },
+  "styles": {
+    "blocks": {
+      "core/group": {
+        "spacing": {
+          "padding": "0",
+          "margin": "0"
+        }
+      },
+      "core/paragraph": {
+        "spacing": {
+          "margin": "0"
+        }
+      }
+    }
+  }
+}
