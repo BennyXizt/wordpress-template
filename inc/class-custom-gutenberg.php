@@ -13,7 +13,44 @@ class Custom_Gutenberg {
         $this->block_category = 'block';
 
         add_filter('block_categories_all', [$this, 'add_new_category'], 10, 1);
+        add_filter('acf/fields/wysiwyg/toolbars', [$this, 'change_standart_tinymce_toolbal'], 10, 1);
+        add_filter('tiny_mce_before_init', [$this, 'add_support_span'], 10, 1);
         add_action('acf/init', [$this, 'init']);
+    }
+
+    public function change_standart_tinymce_toolbal($toolbars) {
+        if (isset($toolbars['Basic'][1])) {
+            if (!in_array('styleselect', $toolbars['Basic'][1])) {
+                array_unshift($toolbars['Basic'][1], 'styleselect');
+            }
+            if (!in_array('removeformat', $toolbars['Basic'][1])) {
+                $toolbars['Basic'][1][] = 'removeformat';
+            }
+        }
+
+        return $toolbars;
+    }
+
+    public function add_support_span($init) {
+        $init['style_formats'] = json_encode([
+            [
+                'title' => 'Inline',
+                'items' => [
+                    [
+                        'title' => 'Span',
+                        'inline' => 'span',
+                        'classes' => '',
+                    ],
+                    [
+                        'title' => 'Span Highlight',
+                        'inline' => 'span',
+                        'classes' => 'highlight',
+                    ],
+                ]
+            ]
+        ]);
+
+        return $init;
     }
 
     public function add_new_category($categories) {
@@ -34,17 +71,25 @@ class Custom_Gutenberg {
 
     public function init() {
         if( function_exists('acf_register_block_type') ) {
-            $this->add_new_block('headerText');
+            // $this->add_new_block('test');
         }
     }
 
     public function render_callback($block, $content = '', $is_preview = false, $post_id = 0) {
         $name = str_replace('acf/', '', $block['name']);
 
+        $field_type = null;
         $has_content = false;
-
         foreach($block['data'] as $key => $value) {
-            if(strpos($key, '_') === 0) continue;
+            $field_object = acf_get_field($key);
+
+            if($field_object) {
+                $field_type = $field_object['type'];
+            }
+                
+
+            if(strpos($key, '_') === 0 || $field_type === 'color_picker') continue;
+
             if (is_array($value)) {
                 if (!empty(array_filter($value))) {
                     $has_content = true;
@@ -83,14 +128,14 @@ class Custom_Gutenberg {
             'supports'        => [
                 'align' => true,
                 'jsx'   => true,
-                'color' => [
-                    'text' => true,
-                    'background' => true
-                ],
-                'typography' => [
-                    'fontSize' => true,
-                    'lineHeight' => true
-                ]
+                // 'color' => [
+                //     'text' => true,
+                //     'background' => true
+                // ],
+                // 'typography' => [
+                //     'fontSize' => true,
+                //     'lineHeight' => true
+                // ]
             ],
         ));
     }

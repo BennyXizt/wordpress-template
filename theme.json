@@ -11,7 +11,11 @@
     "typography": {
       "customFontSize": false,
       "fontSizes": [
-        { "slug": "xsmall", "size": "12px", "name": "XS" }
+        { "slug": "xsmall", "size": "12px", "name": "XS" },
+        { "slug": "small", "size": "14px", "name": "S" },
+        { "slug": "medium", "size": "18px", "name": "M" },
+        { "slug": "large", "size": "20px", "name": "L" },
+        { "slug": "xlarge", "size": "24px", "name": "XL" }
       ]
     },
     "color": {
@@ -28,12 +32,12 @@
         "spacing": {
           "padding": "0",
           "margin": "0"
+        },
+        "typography": {
+          "lineHeight": "1.2"
         }
       },
       "core/paragraph": {
-        "spacing": {
-          "margin": "0"
-        }
       }
     }
   }
