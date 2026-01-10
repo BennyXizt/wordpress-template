@@ -85,6 +85,7 @@ class Custom_Gutenberg {
         if( function_exists('acf_register_block_type') ) {
             $this->add_new_block('title');
             $this->add_new_block('text');
+            $this->add_new_block('icon');
             $this->add_new_block('button-link');
         }
     }
