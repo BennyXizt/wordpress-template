@@ -3,17 +3,25 @@
 
     if($args) {
         $blockClass = isset($args['blockClass']) ? 'class="'.$args['blockClass'].'__title"' : '';
+
+        $fields = [
+            'title' => wp_kses($args['data']['title'] ?? '', [
+                'span' => []
+            ]),
+            'type' => $args['data']['type'] ?? 'h2',
+            'color' => $args['data']['color'] ?? ''
+        ];
     } else {
         $blockClass = '';
-    }
 
-    $fields = [
-        'title' => wp_kses(get_field('title'), [
-            'span' => []
-        ]) ?? null,
-        'type' => get_field('title_type') ?? 'h2',
-        'color' => get_field('color') ?? '',
-    ];
+        $fields = [
+            'title' => wp_kses(get_field('title') ?? '', [
+                'span' => []
+            ]),
+            'type' => get_field('type') ?? 'h2',
+            'color' => get_field('color') ?? '',
+        ];
+    }
 
     $color = !empty($fields['color']) ? 'style="color: '. $fields['color'] .'"' : '';
 ?>
