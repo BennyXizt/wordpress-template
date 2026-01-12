@@ -9,6 +9,13 @@
             'size' => $args['data']['size'] ?? null,
             'style' => $args['data']['style'] ?? null
         ];
+
+        $blockClass = 'icon';
+
+        if(isset($fields['isRounded'])) {
+            $blockClass = isset($args['blockClass']) ? $args['blockClass'] . '__icon-rounded icon-rounded' : 'icon-rounded';
+            $svgCSS = isset($args['blockClass']) ? $args['blockClass'] . '__icon-rounded icon-rounded__icon' : 'icon-rounded__icon';
+        }
     }
     else {
         $fields = [
@@ -18,17 +25,18 @@
             'size' => get_field('size') ?? null,
             'style' => get_field('style') ?? null
         ];
+
+        $blockClass = 'icon';
+
+        if(isset($fields['isRounded'])) {
+            $blockClass = 'icon-rounded';
+            $svgCSS = 'icon-rounded__icon';
+        }
     }
+
+    
 
     $href = !empty($fields['file'] && $fields['iconName']) ? 'href="'. $fields['file'] . '#' . $fields['iconName'] .'"' : '';
-
-    $blockClass = 'icon';
-    $svgClass = 'icon';
-
-    if(!empty($fields['isRounded'])) {
-        $blockClass = 'icon-rounded';
-		$svgCSS = 'icon-rounded__icon';
-    }
 
     $blockSizes = ['30' => 'icon-rounded--size-30', '32' => 'icon-rounded--size-32', '38' => 'icon-rounded--size-38'];
     $blockStyles = ['primary' => 'icon-rounded--primary'];
@@ -45,7 +53,7 @@
 <?php if(!empty($fields['isRounded'])) : ?>
     <div class="<?=$blockClass?>">
 <?php endif; ?>
-    <svg class="icon-rounded__icon">
+    <svg class="<?=$svgCSS?>">
         <use <?=$href?> ></use>
     </svg>
 <?php if(!empty($fields['isRounded'])) : ?>

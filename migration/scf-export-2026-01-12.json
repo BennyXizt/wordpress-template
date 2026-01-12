@@ -44,6 +44,59 @@
                 "prefix_name": 0
             },
             {
+                "key": "field_694705b25897f",
+                "label": "Block Type",
+                "name": "block_type",
+                "aria-label": "",
+                "type": "button_group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "20",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "button": "Button",
+                    "link": "Link"
+                },
+                "default_value": "button",
+                "return_format": "value",
+                "allow_null": 0,
+                "allow_in_bindings": 0,
+                "layout": "horizontal"
+            },
+            {
+                "key": "field_694712000acf4",
+                "label": "Scroll To",
+                "name": "scroll",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_694705b25897f",
+                            "operator": "==",
+                            "value": "button"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "80",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
                 "key": "field_6946f3a029b70",
                 "label": "Label",
                 "name": "label",
@@ -90,33 +143,12 @@
                     ]
                 ],
                 "wrapper": {
-                    "width": "",
+                    "width": "80",
                     "class": "",
                     "id": ""
                 },
                 "return_format": "array",
                 "allow_in_bindings": 0
-            },
-            {
-                "key": "field_694712000acf4",
-                "label": "Scroll To",
-                "name": "scroll",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "allow_in_bindings": 0,
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
             },
             {
                 "key": "field_694704e5dfb81",
@@ -135,30 +167,6 @@
                 "placement": "top",
                 "endpoint": 0,
                 "selected": 0
-            },
-            {
-                "key": "field_694705b25897f",
-                "label": "Block Type",
-                "name": "block_type",
-                "aria-label": "",
-                "type": "button_group",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "26",
-                    "class": "",
-                    "id": ""
-                },
-                "choices": {
-                    "button": "Button",
-                    "link": "Link"
-                },
-                "default_value": "button",
-                "return_format": "value",
-                "allow_null": 0,
-                "allow_in_bindings": 0,
-                "layout": "horizontal"
             },
             {
                 "key": "field_6946f43c29b72",
