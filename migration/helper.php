@@ -28,7 +28,7 @@ $blockTypeLink = "a {$url} {$target}";
 
 <a <?= $url . ' ' . $target ?>>
 </a>
-//link
+// link
 
 // init Gutenberg block
 $args = $args ?? null;
@@ -43,3 +43,9 @@ else {
         ''
     ];
 }
+
+// menu
+$locations = get_nav_menu_locations();
+$menuID = $locations['menuSlug'];
+$mnenu = wp_get_nav_menu_items($menuID);
+// menu
