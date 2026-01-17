@@ -2,20 +2,22 @@
 
 class Custom_Taxonomy {
     private $types = [
-        'SLUG' => [
-            'postTypes'     => ['CustomPostTypeSlug'],
-            'labels'        => [
-                'name'              => 'Label',
-                'singular_name'     => 'SingularLabel',
-                'search_items'      => 'SearchLabel',
-                'all_items'         => 'AllLabel',
-                'edit_item'         => 'EditLabel',
-                'add_new_item'      => 'AddNewLabel',
-                'menu_name'         => 'MenuLabel',
-            ],
-            'hierarchical' => true,
-            'rewrite' => ['slug' => 'InternetBrowserLink']
-        ]
+        // 'slug' => [
+        //     'postTypes'     => ['slugOfPostType'],
+        //     'data' => [
+        //         'labels'        => [
+        //             'name'              => 'Categories',
+        //             'singular_name'     => 'Category',
+        //             'search_items'      => 'Search Categories',
+        //             'all_items'         => 'All Categories',
+        //             'edit_item'         => 'Edit Category',
+        //             'add_new_item'      => 'Add New Category',
+        //             'menu_name'         => 'Categories',
+        //         ],
+        //         'hierarchical' => false,
+        //         'rewrite' => ['slug' => 'services/type']
+        //     ]
+        // ],
     ];
 
     public function __construct() {
@@ -23,14 +25,11 @@ class Custom_Taxonomy {
     }
     public function init() {
         foreach($this->types as $slug => $config) {
-            register_taxonomy($slug, $config['postTypes'], [
-                'labels' => $config['labels'],
-                'hierarchical' => $config['hierarchical'],
+            register_taxonomy($slug, $config['postTypes'], array_merge($config['data'], [
                 'show_ui'      => true,
                 'show_admin_column' => true,
-                'rewrite'      => $config['rewrite'],
                 'show_in_rest' => true, 
-            ]);
+            ]));
         }
     }
 }

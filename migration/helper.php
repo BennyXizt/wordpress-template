@@ -15,10 +15,18 @@ get_posts([
 setup_postdata($post);
 wp_reset_postdata();
 
+
 $id = $item->ID;
 $title = get_the_title($id);
 $content = get_the_content(null, false, $id);
+$imageID = get_post_thumbnail_id($id);
+$link = get_permalink($id);
 // custom post
+
+// term
+$terms = get_the_terms($id, 'TaxonomySlug');
+$term_link = get_term_link($term->term_id);
+
 
 // link
 $url = !empty($fields['link']['url']) ? 'href="'. esc_url($fields['link']['url']) .'"' : '';
@@ -60,3 +68,7 @@ if($logo_file) {
     $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
 }
 // custom logo
+
+// array
+
+// array
