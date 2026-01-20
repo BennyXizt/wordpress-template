@@ -2,6 +2,7 @@
 
 require_once get_template_directory() . '/inc/globals.php';
 require_once get_template_directory() . '/inc/scripts.php';
+require_once get_template_directory() . '/inc/theme-setup.php';
 require_once get_template_directory() . '/inc/utils.php';
 require_once get_template_directory() . '/inc/menus.php';
 require_once get_template_directory() . '/inc/class-custom-customize.php';
