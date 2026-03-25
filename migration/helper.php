@@ -5,28 +5,47 @@ esc_html($var); // text
 esc_url($var); // href, src, action
 esc_attr($var); // attr
 wp_get_attachment_image($fields['image']['ID'], 'full', false, ['class'=>'']); // responsive img
+get_theme_mod('CustomizeSettingsID'); // get value from customizer
+get_template_directory(''); // path to a file
+get_template_directory_uri(''); // link to a file
+
+// get curr page link
+global $wp;
+$current_url = home_url(add_query_arg(array(), $wp->request)); 
+// get curr page link
 
 // custom post
-get_posts([
-    'post_type'      => 'ExistedPostID',
+$posts = get_posts([
+    'post_type'      => 'ExistedPostTYPE',
     'posts_per_page' => 5,
     'post_status'    => 'publish',
+    'suppress_filters' => false, // ломает pre_get_posts /Polylang /SEOPlugins
 ]); // get post
 setup_postdata($post);
 wp_reset_postdata();
 
-
-$id = $item->ID;
+$query = new WP_Query([
+    'post_type'      => 'ExistedPostTYPE',
+    'posts_per_page' => 5,
+    'post_status'    => 'publish',
+]); // alternative custom post but with more data
+if ($query->have_posts()) :
+    while ($query->have_posts()): $query->the_post();
+wp_reset_postdata();
+// global $post;
+$id = $post->ID | get_the_ID();
 $title = get_the_title($id);
-$content = get_the_content(null, false, $id);
+$content = get_the_content(null, false, $id) | the_content();
+$contentRAW = get_post_field('post_content', $post_id);
 $imageID = get_post_thumbnail_id($id);
+$categoryDefaultTaxonomy = get_the_category();
 $link = get_permalink($id);
-// custom post
-
-// term
+$date = get_the_date('d.m.Y', $id);
+$datetime = get_the_date('Y-m-d', $id); 
+$formatted_date = get_the_date('jS M Y', $id);
 $terms = get_the_terms($id, 'TaxonomySlug');
 $term_link = get_term_link($term->term_id);
-
+// custom post
 
 // link
 $url = !empty($fields['link']['url']) ? 'href="'. esc_url($fields['link']['url']) .'"' : '';
@@ -69,6 +88,28 @@ if($logo_file) {
 }
 // custom logo
 
-// array
+// get item from Customize
+$sanitizedKey = sanitize_key(wp_get_theme()->get('Name') . 'ExistedCustomizeSettingID');
+$item = get_theme_mod($sanitizedKey, '');
+// get item from Customize
+?>
 
-// array
+// comments
+<?php if (comments_open() || get_comments_number()) : ?>
+    <?php comments_template(); ?>
+<?php endif; ?>
+// comments
+
+// get category name from categories
+<?php 
+$categories = array_map(
+    fn($e) => $e->name
+    , array_filter(get_the_category(), fn($e) => !empty($e->name))
+);
+$category = implode(', ', $categories);
+?>
+
+// edit acf field in block 
+<?php
+echo acf_inline_text_editing_attrs( ‘my_text_field’ );
+?>

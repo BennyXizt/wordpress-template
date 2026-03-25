@@ -27,7 +27,7 @@
 ?>
 
 <?php if(!empty($fields['title'])) : ?>
-    <<?=$fields['type']?> <?=$blockClass?> <?=$color?>>
+    <<?=$fields['type']?> <?= acf_inline_toolbar_editing_attrs(['title']); ?>>
         <?= $fields['title'] ?>
     </<?=$fields['type']?>>
 <?php endif; ?>

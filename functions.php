@@ -9,6 +9,7 @@ require_once get_template_directory() . '/inc/class-custom-customize.php';
 require_once get_template_directory() . '/inc/class-custom-gutenberg.php';
 require_once get_template_directory() . '/inc/class-custom-post-types.php';
 require_once get_template_directory() . '/inc/class-custom-taxonomy.php';
+require_once get_template_directory() . '/inc/class-custom-options-page.php';
 
 
 add_action('after_setup_theme', function() {
@@ -16,4 +17,5 @@ add_action('after_setup_theme', function() {
     new Custom_Gutenberg();
     new Custom_Post_Type();
     new Custom_Taxonomy();
+    new Custom_Options_Page();
 });
