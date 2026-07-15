@@ -9,8 +9,9 @@
     }
 
     $locations = get_nav_menu_locations();
-    $desktopMenuID = $locations['header_menu'];
-    $desktopMenu = util_buildMenu(wp_get_nav_menu_items($desktopMenuID));
+    $desktopMenuID = $locations['header_menu'] ?? null;
+
+    $desktopMenu = $desktopMenuID ? util_buildMenu(wp_get_nav_menu_items($desktopMenuID)) : null;
 ?>
 
 <header class="header">
@@ -33,11 +34,16 @@
                     <?php endif; ?>
                 </a>
             <?php endif; ?>
-            <div class="header__menu menu">
-                <nav class="menu__body">
-                    <?php util_generateMenus($desktopMenu); ?>
-                </nav>
-            </div>
+            <?php if($desktopMenu): ?>
+                <div class="header__menu menu">
+                    <nav class="menu__body">
+                        <?php util_generateMenus($desktopMenu); ?>
+                    </nav>
+                </div>
+            <?php else: ?>
+                Add Some Menu Pages
+            <?php endif; ?>
+                
             <button class="header__burger burger">
               <span></span>
             </button>
