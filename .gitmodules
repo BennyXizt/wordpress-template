@@ -1,0 +1,3 @@
+[submodule "assets/styles/scss"]
+	path = assets/styles/scss
+	url = https://github.com/BennyXizt/scss-7-1-web.git
