@@ -1,0 +1,24 @@
+{
+  "name": "wordpress-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sass --watch --no-source-map --style=compressed assets/styles/scss/main.scss:assets/styles/css/main.css assets/styles/scss/editor-style.scss:assets/styles/css/editor-style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BennyXizt/wordpress-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BennyXizt/wordpress-template/issues"
+  },
+  "homepage": "https://github.com/BennyXizt/wordpress-template#readme",
+  "devDependencies": {
+    "sass": "^1.101.0"
+  }
+}
