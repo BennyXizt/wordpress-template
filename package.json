@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "sass --watch --no-source-map --style=compressed assets/styles/scss/main.scss:assets/styles/css/main.css assets/styles/scss/editor-style.scss:assets/styles/css/editor-style.css"
+    "dev": "sass --quiet --watch --no-source-map --style=compressed assets/styles/scss/main.scss:assets/styles/css/main.css assets/styles/scss/editor-style.scss:assets/styles/css/editor-style.css"
   },
   "repository": {
     "type": "git",
