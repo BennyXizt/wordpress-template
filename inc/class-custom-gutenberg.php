@@ -14,17 +14,17 @@ class Custom_Gutenberg {
         $this->block_category = 'block';
 
         $this->blocks = [
-            'title-test' => [
+            'custom-title' => [
                 'title' => __('Title', $this->theme_id),
                 'mode' => 'edit'
             ],
-            'text-test' => [
+            'custom-text' => [
                 'title' => __('Text', $this->theme_id),
             ],
-            'icon-test' => [
+            'custom-icon' => [
                 'title' => __('Icon', $this->theme_id),
             ],
-            'button-test' => [
+            'custom-button' => [
                 'title' => __('Button Link', $this->theme_id),
             ],
         ];
@@ -74,19 +74,19 @@ class Custom_Gutenberg {
     public function add_new_category($categories) {
         $custom = [
             [
-                'slug' => $this->section_category,
-                'title' => ucfirst($this->section_category),
+                'slug' => 'section',
+                'title' => __('Section', $this->theme_id),
                 'icon' => null
             ],
             [
-                'slug' => $this->block_category,
-                'title' => ucfirst($this->block_category),
+                'slug' => 'block',
+                'title' => __('Block', $this->theme_id),
                 'icon' => null
             ]
         ];
 
         $categories = array_filter($categories, function($cat) {
-            return $cat['slug'] !== $this->block_category && $cat['slug'] !== $this->section_category;
+            return $cat['slug'] !== 'block' && $cat['slug'] !== 'section';
         });
 
         return array_merge($custom, $categories);
