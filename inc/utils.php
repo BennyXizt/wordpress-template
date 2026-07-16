@@ -48,13 +48,13 @@ function util_generateMenus($menu, $class = 'menu', $parentClass = 'menu', $dept
             echo $element['item']->title;
 
             if($element['children']) {
-                    echo "<div class='{$iconWrapperClass}'>";
-                        get_template_part('template-parts/gutenberg/blocks/icon', null, ['blockClass'=>$iconClass, 'data'=>[
-                            'file' => get_template_directory_uri() . '/assets/media/icons/sprite.svg',
-                            'icon_name' => 'ph_arrow-drop-down-line',
-                            'rounded' => false
-                        ]]);
-                    echo '</div>';
+                    // echo "<div class='{$iconWrapperClass}'>";
+                    //     get_template_part('template-parts/gutenberg/blocks/icon', null, ['blockClass'=>$iconClass, 'data'=>[
+                    //         'file' => get_template_directory_uri() . '/assets/media/icons/sprite.svg',
+                    //         'icon_name' => 'ph_arrow-drop-down-line',
+                    //         'rounded' => false
+                    //     ]]);
+                    // echo '</div>';
                 echo '</span>';
             }
 
