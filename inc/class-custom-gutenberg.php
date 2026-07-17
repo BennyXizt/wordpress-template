@@ -11,22 +11,10 @@ class Custom_Gutenberg {
         }
         $this->theme_id = $theme_id;
 
-        $this->block_category = 'block';
+        $this->block_category = 'blocks';
 
         $this->blocks = [
-            'custom-title' => [
-                'title' => __('Title', $this->theme_id),
-                'mode' => 'edit'
-            ],
-            'custom-text' => [
-                'title' => __('Text', $this->theme_id),
-            ],
-            'custom-icon' => [
-                'title' => __('Icon', $this->theme_id),
-            ],
-            'custom-button' => [
-                'title' => __('Button Link', $this->theme_id),
-            ],
+            
         ];
 
         add_action('acf/init', [$this, 'init']);
@@ -79,14 +67,14 @@ class Custom_Gutenberg {
                 'icon' => null
             ],
             [
-                'slug' => 'block',
+                'slug' => $this->block_category,
                 'title' => __('Block', $this->theme_id),
                 'icon' => null
             ]
         ];
 
         $categories = array_filter($categories, function($cat) {
-            return $cat['slug'] !== 'block' && $cat['slug'] !== 'section';
+            return $cat['slug'] !== $this->block_category && $cat['slug'] !== 'section';
         });
 
         return array_merge($custom, $categories);
@@ -129,7 +117,7 @@ class Custom_Gutenberg {
         } else $has_content = true;
 
         if($block['category'] === $this->block_category) {
-            $template_file = get_template_directory() . "/template-parts/gutenberg/blocks/{$name}.php";
+            $template_file = get_template_directory() . "/template-parts/gutenberg/{$this->block_category}/{$name}.php";
         }
         else if($block['category'] === $this->section_category) {
             $template_file = get_template_directory() . "/template-parts/gutenberg/sections/{$name}.php";
