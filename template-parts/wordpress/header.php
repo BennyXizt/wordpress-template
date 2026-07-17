@@ -1,13 +1,4 @@
 <?php
-    $custom_logo_id = get_theme_mod('custom_logo'); 
-    $logo_file = get_attached_file($custom_logo_id);
-
-    if($logo_file) {
-        $logo_ext = pathinfo($logo_file, PATHINFO_EXTENSION);
-        $logo_svg = file_get_contents($logo_file);
-        $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
-    }
-
     $locations = get_nav_menu_locations();
     $desktopMenuID = $locations['header_menu'] ?? null;
 
